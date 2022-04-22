@@ -1,0 +1,9 @@
+{
+  "Author": "Eisenhuth",
+  "Name": "Nael'd it for UCOB",
+  "Description": "Translates Nael's quotes into mechanics.",
+  "Punchline": "because reading chat is not a mechanic",
+  "InternalName": "NaelPlugin",
+  "Tags": ["ui"],
+  "RepoUrl": "https://github.com/Eisenhuth/dalamud-nael"
+}
