@@ -5,5 +5,8 @@
   "Punchline": "because reading chat is not a mechanic",
   "InternalName": "NaelPlugin",
   "Tags": ["ui"],
-  "RepoUrl": "https://github.com/Eisenhuth/dalamud-nael"
+  "RepoUrl": "https://github.com/Eisenhuth/dalamud-nael",
+  "ImageUrls": [
+    "https://user-images.githubusercontent.com/47415874/185758778-a5945970-cf8b-455b-beec-c7489b3c7011.png"
+  ]
 }
