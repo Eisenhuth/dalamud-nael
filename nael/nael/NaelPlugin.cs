@@ -68,15 +68,15 @@ namespace nael
 
         private void TestPlugin()
         {
-            chatGui.PrintChat(NaelMessage("Blazing path, lead me to iron rule!")); //beam > chariot
-            chatGui.PrintChat(NaelMessage("From hallowed moon I descend, a rain of stars to bring!")); //dynamo > dive > meteor stream
+            chatGui.PrintChat(NaelMessage("Blazing path,\n lead me to iron rule!")); //beam > chariot
+            chatGui.PrintChat(NaelMessage("From hallowed moon I descend,\n a rain of stars to bring!")); //dynamo > dive > meteor stream
         }
 
         private static XivChatEntry NaelMessage(string message)
         {
             var entry = new XivChatEntry
             {
-                Name = "Nael Deus Darnus",
+                Name = "Nael deus Darnus",
                 Type = XivChatType.NPCDialogueAnnouncements,
                 Message = message
             };
@@ -89,9 +89,15 @@ namespace nael
             if (!configuration.Enabled) 
                 return;
 
+            if (type != XivChatType.NPCDialogueAnnouncements)
+                return;
+
             foreach (var payload in message.Payloads)
-                if (payload is TextPayload textPayload)
+                if (payload is TextPayload { Text: { } } textPayload)
+                {
+                    textPayload.Text = textPayload.Text.Replace("\n", "");
                     textPayload.Text = NaelIt(textPayload.Text);
+                }
         }
         
         /// <summary>
@@ -140,8 +146,8 @@ namespace nael
 
             ImGui.Separator();
             
-            ImGui.Text($"Nael Deus Darnus: {configBeam} {configSeparator} {configChariot}");
-            ImGui.Text($"Nael Deus Darnus: {configDynamo} {configSeparator} {configDive} {configSeparator} {configMeteorStream}");
+            ImGui.Text($"Nael deus Darnus: {configBeam} {configSeparator} {configChariot}");
+            ImGui.Text($"Nael deus Darnus: {configDynamo} {configSeparator} {configDive} {configSeparator} {configMeteorStream}");
             
             ImGui.Separator();        
 
