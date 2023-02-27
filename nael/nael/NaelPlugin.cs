@@ -68,8 +68,8 @@ namespace nael
 
         private void TestPlugin()
         {
-            chatGui.PrintChat(NaelMessage("Blazing path,\n lead me to iron rule!")); //beam > chariot
-            chatGui.PrintChat(NaelMessage("From hallowed moon I descend,\n a rain of stars to bring!")); //dynamo > dive > meteor stream
+            chatGui.PrintChat(NaelMessage("Blazing path,\nlead me to iron rule!")); //beam > chariot
+            chatGui.PrintChat(NaelMessage("From hallowed moon I descend,\na rain of stars to bring!")); //dynamo > dive > meteor stream
         }
 
         private static XivChatEntry NaelMessage(string message)
