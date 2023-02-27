@@ -95,7 +95,7 @@ namespace nael
             foreach (var payload in message.Payloads)
                 if (payload is TextPayload { Text: { } } textPayload)
                 {
-                    textPayload.Text = textPayload.Text.Replace("\n", "");
+                    textPayload.Text = textPayload.Text.Replace("\n", " ");
                     textPayload.Text = NaelIt(textPayload.Text);
                 }
         }
