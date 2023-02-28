@@ -115,11 +115,11 @@ namespace nael
                 "Take fire, O hallowed moon!" => $"{Configuration.Beam} {Configuration.Separator} {Configuration.Dynamo}",
                 "Blazing path, lead me to iron rule!" => $"{Configuration.Beam} {Configuration.Separator} {Configuration.Chariot}",
                 "From on high I descend, the iron path to call!" or "From on high I descend, the iron path to walk!" => $"{Configuration.Dive} {Configuration.Separator} {Configuration.Chariot}",
-                "From on high I descend, the hallowed moon to call!" => $"{Configuration.Dive} ${Configuration.Separator} {Configuration.Dynamo}",
-                "Fleeting light! 'Neath the red moon, scorch your earth!" => $"{Configuration.Dive} {Configuration.Separator} {Configuration.Beam}",
+                "From on high I descend, the hallowed moon to call!" => $"{Configuration.Dive} {Configuration.Separator} {Configuration.Dynamo}",
+                "Fleeting light! 'Neath the red moon, scorch you the earth!" => $"{Configuration.Dive} {Configuration.Separator} {Configuration.Beam}",
                 "Fleeting light! Amid a rain of stars, exalt you the red moon!" => $"{Configuration.MeteorStream} {Configuration.Separator} {Configuration.Dive}",
                 //Phase 3
-                "From on high I descend, the moon and stars to bring!" => $"{Configuration.Dive} > {Configuration.Dynamo} {Configuration.Separator} {Configuration.MeteorStream}",
+                "From on high I descend, the moon and stars to bring!" => $"{Configuration.Dive} {Configuration.Separator} {Configuration.Dynamo} {Configuration.Separator} {Configuration.MeteorStream}",
                 "From hallowed moon I descend, a rain of stars to bring!" => $"{Configuration.Dynamo} {Configuration.Separator} {Configuration.Dive} {Configuration.Separator} {Configuration.MeteorStream}",
                 //Phase 4
                 "From hallowed moon I descend, upon burning earth to tread!" => $"{Configuration.Dynamo} {Configuration.Separator} {Configuration.Dive} {Configuration.Separator} {Configuration.Beam}",
