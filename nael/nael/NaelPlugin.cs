@@ -1,4 +1,5 @@
-﻿using Dalamud.Game.Text;
+﻿using System.Numerics;
+using Dalamud.Game.Text;
 
 namespace nael
 {
@@ -137,13 +138,16 @@ namespace nael
             
             ImGui.Begin($"{Name} Configuration", ref drawConfiguration);
             
+            ImGui.TextColored(new Vector4(1, 0, 0, 1), "customization currently disabled");
+            ImGui.BeginDisabled();
             ImGui.InputText("Dynamo", ref configDynamo, 32);
             ImGui.InputText("Chariot", ref configChariot, 32);
             ImGui.InputText("Beam", ref configBeam, 32);
             ImGui.InputText("Dive", ref configDive, 32);
             ImGui.InputText("Meteor Stream", ref configMeteorStream, 32);
             ImGui.InputText("Separator", ref configSeparator, 8);
-
+            ImGui.EndDisabled();
+            
             ImGui.Separator();
             
             ImGui.Text($"Nael deus Darnus: {configBeam} {configSeparator} {configChariot}");
