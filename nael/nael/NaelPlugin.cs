@@ -106,27 +106,27 @@ namespace nael
         /// </summary>
         /// <param name="input">chat message</param>
         /// <returns>the names of the mechanics</returns>
-        private static string NaelIt(string input)
+        private string NaelIt(string input)
         {
             return input switch
             {
                 //Phase 2
-                "O hallowed moon, take fire and scorch my foes!" => $"{Configuration.Dynamo} {Configuration.Separator} {Configuration.Beam}",
-                "O hallowed moon, shine you the iron path!" => $"{Configuration.Dynamo} {Configuration.Separator} {Configuration.Chariot}",
-                "Take fire, O hallowed moon!" => $"{Configuration.Beam} {Configuration.Separator} {Configuration.Dynamo}",
-                "Blazing path, lead me to iron rule!" => $"{Configuration.Beam} {Configuration.Separator} {Configuration.Chariot}",
-                "From on high I descend, the iron path to call!" or "From on high I descend, the iron path to walk!" => $"{Configuration.Dive} {Configuration.Separator} {Configuration.Chariot}",
-                "From on high I descend, the hallowed moon to call!" => $"{Configuration.Dive} {Configuration.Separator} {Configuration.Dynamo}",
-                "Fleeting light! 'Neath the red moon, scorch you the earth!" => $"{Configuration.Dive} {Configuration.Separator} {Configuration.Beam}",
-                "Fleeting light! Amid a rain of stars, exalt you the red moon!" => $"{Configuration.MeteorStream} {Configuration.Separator} {Configuration.Dive}",
+                "O hallowed moon, take fire and scorch my foes!" => $"{configDynamo} {configSeparator} {configBeam}",
+                "O hallowed moon, shine you the iron path!" => $"{configDynamo} {configSeparator} {configChariot}",
+                "Take fire, O hallowed moon!" => $"{configBeam} {configSeparator} {configDynamo}",
+                "Blazing path, lead me to iron rule!" => $"{configBeam} {configSeparator} {configChariot}",
+                "From on high I descend, the iron path to call!" or "From on high I descend, the iron path to walk!" => $"{configDive} {configSeparator} {configChariot}",
+                "From on high I descend, the hallowed moon to call!" => $"{configDive} {configSeparator} {configDynamo}",
+                "Fleeting light! 'Neath the red moon, scorch you the earth!" => $"{configDive} {configSeparator} {configBeam}",
+                "Fleeting light! Amid a rain of stars, exalt you the red moon!" => $"{configMeteorStream} {configSeparator} {configDive}",
                 //Phase 3
-                "From on high I descend, the moon and stars to bring!" => $"{Configuration.Dive} {Configuration.Separator} {Configuration.Dynamo} {Configuration.Separator} {Configuration.MeteorStream}",
-                "From hallowed moon I descend, a rain of stars to bring!" => $"{Configuration.Dynamo} {Configuration.Separator} {Configuration.Dive} {Configuration.Separator} {Configuration.MeteorStream}",
+                "From on high I descend, the moon and stars to bring!" => $"{configDive} {configSeparator} {configDynamo} {configSeparator} {configMeteorStream}",
+                "From hallowed moon I descend, a rain of stars to bring!" => $"{configDynamo} {configSeparator} {configDive} {configSeparator} {configMeteorStream}",
                 //Phase 4
-                "From hallowed moon I descend, upon burning earth to tread!" => $"{Configuration.Dynamo} {Configuration.Separator} {Configuration.Dive} {Configuration.Separator} {Configuration.Beam}",
-                "From hallowed moon I bare iron, in my descent to wield!" => $"{Configuration.Dynamo} {Configuration.Separator} {Configuration.Chariot} {Configuration.Separator} {Configuration.Dive}",
-                "Unbending iron, take fire and descend! " => $"{Configuration.Chariot} {Configuration.Separator} {Configuration.Beam} {Configuration.Separator} {Configuration.Dive}",
-                "Unbending iron, descend with fiery edge!" => $"{Configuration.Chariot} {Configuration.Separator} {Configuration.Dive} {Configuration.Separator} {Configuration.Beam}",
+                "From hallowed moon I descend, upon burning earth to tread!" => $"{configDynamo} {configSeparator} {configDive} {configSeparator} {configBeam}",
+                "From hallowed moon I bare iron, in my descent to wield!" => $"{configDynamo} {configSeparator} {configChariot} {configSeparator} {configDive}",
+                "Unbending iron, take fire and descend! " => $"{configChariot} {configSeparator} {configBeam} {configSeparator} {configDive}",
+                "Unbending iron, descend with fiery edge!" => $"{configChariot} {configSeparator} {configDive} {configSeparator} {configBeam}",
                 _ => input
             };
         }
@@ -138,15 +138,12 @@ namespace nael
             
             ImGui.Begin($"{Name} Configuration", ref drawConfiguration);
             
-            ImGui.TextColored(new Vector4(1, 0, 0, 1), "customization currently disabled");
-            ImGui.BeginDisabled();
             ImGui.InputText("Dynamo", ref configDynamo, 32);
             ImGui.InputText("Chariot", ref configChariot, 32);
             ImGui.InputText("Beam", ref configBeam, 32);
             ImGui.InputText("Dive", ref configDive, 32);
             ImGui.InputText("Meteor Stream", ref configMeteorStream, 32);
             ImGui.InputText("Separator", ref configSeparator, 8);
-            ImGui.EndDisabled();
             
             ImGui.Separator();
             
@@ -177,22 +174,22 @@ namespace nael
 
         private void LoadConfiguration()
         {
-            configDynamo = Configuration.Dynamo;
-            configChariot = Configuration.Chariot;
-            configBeam = Configuration.Beam;
-            configDive = Configuration.Dive;
-            configMeteorStream = Configuration.MeteorStream;
-            configSeparator = Configuration.Separator;
+            configDynamo = configuration.Dynamo;
+            configChariot = configuration.Chariot;
+            configBeam = configuration.Beam;
+            configDive = configuration.Dive;
+            configMeteorStream = configuration.MeteorStream;
+            configSeparator = configuration.Separator;
         }
 
         private void SaveConfiguration()
         {
-            Configuration.Dynamo = configDynamo;
-            Configuration.Chariot = configChariot;
-            Configuration.Beam = configBeam;
-            Configuration.Dive = configDive;
-            Configuration.MeteorStream = configMeteorStream;
-            Configuration.Separator = configSeparator;
+            configuration.Dynamo = configDynamo;
+            configuration.Chariot = configChariot;
+            configuration.Beam = configBeam;
+            configuration.Dive = configDive;
+            configuration.MeteorStream = configMeteorStream;
+            configuration.Separator = configSeparator;
             
             PluginInterface.SavePluginConfig(configuration);
         }

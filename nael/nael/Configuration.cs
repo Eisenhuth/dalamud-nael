@@ -8,12 +8,12 @@ namespace nael
         public int Version { get; set; }
         public bool Enabled { get; set; } = true;
         
-        public static string Dynamo { get; set; } = "IN";
-        public static string Chariot { get; set; } = "OUT";
-        public static string Beam { get; set; } = "STACK";
-        public static string Dive { get; set; } = "DIVE";
-        public static string MeteorStream { get; set; } = "SPREAD";
-        public static string Separator { get; set; } = ">";
+        public  string Dynamo { get; set; } = "IN";
+        public  string Chariot { get; set; } = "OUT";
+        public  string Beam { get; set; } = "STACK";
+        public  string Dive { get; set; } = "DIVE";
+        public  string MeteorStream { get; set; } = "SPREAD";
+        public  string Separator { get; set; } = ">";
         
 
         private DalamudPluginInterface pluginInterface;
