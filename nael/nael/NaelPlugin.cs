@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using Dalamud.Game.Text;
+﻿using Dalamud.Game.Text;
 
 namespace nael
 {
