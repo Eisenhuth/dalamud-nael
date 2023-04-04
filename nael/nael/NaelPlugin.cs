@@ -1,7 +1,11 @@
-﻿using Dalamud.Game.Text;
-
-namespace nael
+﻿namespace nael
 {
+    using System.IO;
+    using System.Reflection;
+    using System.Text.Json;
+    using Dalamud;
+    using Dalamud.Game.ClientState;
+    using Dalamud.Game.Text;
     using Dalamud.Game.Command;
     using Dalamud.Game.Gui;
     using Dalamud.Game.Text.SeStringHandling;
@@ -20,6 +24,7 @@ namespace nael
         private ChatGui chatGui;
         [PluginService] private static DalamudPluginInterface PluginInterface { get; set; } = null!;
         [PluginService] private static CommandManager CommandManager { get; set; } = null!;
+        [PluginService] private static ClientState ClientState { get; set; } = null!;
 
         private string configDynamo;
         private string configChariot;
@@ -28,7 +33,8 @@ namespace nael
         private string configMeteorStream;
         private string configSeparator;
 
-        
+        private NaelQuotes _naelQuotes;
+
         public NaelPlugin([RequiredVersion("1.0")] DalamudPluginInterface dalamudPluginInterface, [RequiredVersion("1.0")] ChatGui chatGui, [RequiredVersion("1.0")] CommandManager commandManager)
         {
             this.chatGui = chatGui;
@@ -43,33 +49,45 @@ namespace nael
             
             commandManager.AddHandler(commandName, new CommandInfo(NaelCommand)
             {
-                HelpMessage = "toggle the plugin",
+                HelpMessage = "toggle the plugin\n/nael test → print test quotes\n/nael cfg → open the configuration window",
                 ShowInHelp = true
             });
             
             this.chatGui.ChatMessage += OnChatMessage;
+            
+            //load the quotes
+            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("nael.NaelQuotes.json");
+            using var streamReader = new StreamReader(stream);
+            var json = streamReader.ReadToEnd();
+            _naelQuotes = JsonSerializer.Deserialize<NaelQuotes>(json);
         }
 
         private void NaelCommand(string command, string args)
         {
-            if (args.ToLower() == "test")
+            switch (args.ToLower())
             {
-                TestPlugin();
-            }
-            else
-            {
-                configuration.Enabled = !configuration.Enabled;
-                configuration.Save();
+                case "cfg":
+                    OpenConfig();
+                    break;
+                case "test":
+                    TestPlugin();
+                    break;
+                default:
+                {
+                    configuration.Enabled = !configuration.Enabled;
+                    configuration.Save();
 
-                var pluginStatus = configuration.Enabled ? "enabled" : "disabled";
-                chatGui.Print($"{Name} {pluginStatus}");
+                    var pluginStatus = configuration.Enabled ? "enabled" : "disabled";
+                    chatGui.Print($"{Name} {pluginStatus}");
+                    break;
+                }
             }
         }
 
         private void TestPlugin()
         {
-            chatGui.PrintChat(NaelMessage("Blazing path,\nlead me to iron rule!")); //beam > chariot
-            chatGui.PrintChat(NaelMessage("From hallowed moon I descend,\na rain of stars to bring!")); //dynamo > dive > meteor stream
+            foreach (var quote in _naelQuotes.Quotes) 
+                chatGui.PrintChat(NaelMessage($"{GetQuote(quote.ID)}"));
         }
 
         private static XivChatEntry NaelMessage(string message)
@@ -95,7 +113,6 @@ namespace nael
             foreach (var payload in message.Payloads)
                 if (payload is TextPayload { Text: { } } textPayload)
                 {
-                    textPayload.Text = textPayload.Text.Replace("\n", " ");
                     textPayload.Text = NaelIt(textPayload.Text);
                 }
         }
@@ -104,30 +121,64 @@ namespace nael
         /// checks the chat message for any Nael quote and replaces it with the mechanics
         /// </summary>
         /// <param name="input">chat message</param>
-        /// <returns>the names of the mechanics</returns>
+        /// <returns>the names of the mechanics or the chat message if no quotes are found</returns>
         private string NaelIt(string input)
         {
-            return input switch
+            //Phase 2
+            if (input == GetQuote(6492))
+                return $"{configDynamo} {configSeparator} {configChariot}";
+            if (input == GetQuote(6493))
+                return $"{configDynamo} {configSeparator} {configBeam}";
+            if (input == GetQuote(6494))
+                return $"{configBeam} {configSeparator} {configChariot}";
+            if (input == GetQuote(6495))
+                return $"{configBeam} {configSeparator} {configDynamo}";
+            if (input == GetQuote(6496))
+                return $"{configDive} {configSeparator} {configChariot}";
+            if (input == GetQuote(6497))
+                return $"{configDive} {configSeparator} {configDynamo}";
+            if (input == GetQuote(6500))
+                return $"{configMeteorStream} {configSeparator} {configDive}";
+            if (input == GetQuote(6501))
+                return $"{configDive} {configSeparator} {configBeam}";
+            //Phase 3
+            if (input == GetQuote(6502))
+                return $"{configDive} {configSeparator} {configDynamo} {configSeparator} {configMeteorStream}";
+            if (input == GetQuote(6503))
+                return $"{configDynamo} {configSeparator} {configDive} {configSeparator} {configMeteorStream}";
+            //Phase 4
+            if (input == GetQuote(6504))
+                return $"{configChariot} {configSeparator} {configBeam} {configSeparator} {configDive}";
+            if (input == GetQuote(6505))
+                return $"{configChariot} {configSeparator} {configDive} {configSeparator} {configBeam}";
+            if (input == GetQuote(6506))
+                return $"{configDynamo} {configSeparator} {configDive} {configSeparator} {configBeam}";
+            if (input == GetQuote(6507))
+                return $"{configDynamo} {configSeparator} {configChariot} {configSeparator} {configDive}";
+            
+            return input;
+        }
+
+        /// <summary>
+        /// uses the API quote ID to get the quote matching the client's language from the embedded NaelQuotes.json
+        /// quotes taken from https://xivapi.com/NpcYell/[id]
+        /// </summary>
+        /// <param name="id">the quote ID</param>
+        /// <returns>the quote based on the ID and the client language</returns>
+        private string GetQuote(int id)
+        {
+            var quote = _naelQuotes.Quotes.Find(q => q.ID == id);
+            var quoteText =  ClientState.ClientLanguage switch
             {
-                //Phase 2
-                "O hallowed moon, take fire and scorch my foes!" => $"{configDynamo} {configSeparator} {configBeam}",
-                "O hallowed moon, shine you the iron path!" => $"{configDynamo} {configSeparator} {configChariot}",
-                "Take fire, O hallowed moon!" => $"{configBeam} {configSeparator} {configDynamo}",
-                "Blazing path, lead me to iron rule!" => $"{configBeam} {configSeparator} {configChariot}",
-                "From on high I descend, the iron path to call!" or "From on high I descend, the iron path to walk!" => $"{configDive} {configSeparator} {configChariot}",
-                "From on high I descend, the hallowed moon to call!" => $"{configDive} {configSeparator} {configDynamo}",
-                "Fleeting light! 'Neath the red moon, scorch you the earth!" => $"{configDive} {configSeparator} {configBeam}",
-                "Fleeting light! Amid a rain of stars, exalt you the red moon!" => $"{configMeteorStream} {configSeparator} {configDive}",
-                //Phase 3
-                "From on high I descend, the moon and stars to bring!" => $"{configDive} {configSeparator} {configDynamo} {configSeparator} {configMeteorStream}",
-                "From hallowed moon I descend, a rain of stars to bring!" => $"{configDynamo} {configSeparator} {configDive} {configSeparator} {configMeteorStream}",
-                //Phase 4
-                "From hallowed moon I descend, upon burning earth to tread!" => $"{configDynamo} {configSeparator} {configDive} {configSeparator} {configBeam}",
-                "From hallowed moon I bare iron, in my descent to wield!" => $"{configDynamo} {configSeparator} {configChariot} {configSeparator} {configDive}",
-                "Unbending iron, take fire and descend! " => $"{configChariot} {configSeparator} {configBeam} {configSeparator} {configDive}",
-                "Unbending iron, descend with fiery edge!" => $"{configChariot} {configSeparator} {configDive} {configSeparator} {configBeam}",
-                _ => input
+                ClientLanguage.English => quote.Text.Text_en,
+                ClientLanguage.French => quote.Text.Text_fr,
+                ClientLanguage.German => quote.Text.Text_de,
+                ClientLanguage.Japanese => quote.Text.Text_ja,
+                _ => quote.Text.Text_en
             };
+            quoteText = quoteText.Replace("\n\n", "\n");
+            
+            return quoteText;
         }
 
         private void DrawConfiguration()
@@ -150,17 +201,19 @@ namespace nael
             ImGui.Text($"Nael deus Darnus: {configDynamo} {configSeparator} {configDive} {configSeparator} {configMeteorStream}");
             
             ImGui.Separator();        
-
-            if (ImGui.Button("Test"))
-            {
-                TestPlugin();
-            }
             
             if (ImGui.Button("Save and Close"))
             {
                 SaveConfiguration();
 
                 drawConfiguration = false;
+            }
+            
+            ImGui.SameLine();
+            
+            if (ImGui.Button("Test all quotes"))
+            {
+                TestPlugin();
             }
             
             ImGui.End();
