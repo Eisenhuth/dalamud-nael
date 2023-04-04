@@ -1,11 +1,12 @@
 # Nael'd it for UCOB
 
-![image](https://user-images.githubusercontent.com/47415874/185758778-a5945970-cf8b-455b-beec-c7489b3c7011.png)
+![image](https://user-images.githubusercontent.com/47415874/229924485-b9589532-f193-47ec-ad97-973218d4c916.png)
 
 Chat plugin alternative to ACT triggers, Cactbot or memorization.
 
 - translates Nael's quotes into mechanics
 - `/nael` to toggle
-- `/nael test` to print two test quotes in chat
+- `/nael test` to print all quotes in chat
+- `/nael cfg` to open the configuration window
 
-![image](https://user-images.githubusercontent.com/47415874/185758822-b312163d-bb22-444e-aa57-bebf91ec6a2b.png)
+![image](https://user-images.githubusercontent.com/47415874/229924687-c3a09247-babd-49d0-affb-5f1316883b7f.png)
