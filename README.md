@@ -10,3 +10,6 @@ Chat plugin alternative to ACT triggers, Cactbot or memorization.
 - `/nael cfg` to open the configuration window
 
 ![image](https://user-images.githubusercontent.com/47415874/229924687-c3a09247-babd-49d0-affb-5f1316883b7f.png)
+
+# installation
+get it here: https://github.com/Eisenhuth/TrustworthyDalamudPlugins
