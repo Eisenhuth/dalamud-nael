@@ -34,7 +34,7 @@
         private string configMeteorStream;
         private string configSeparator;
 
-        private NaelQuotes naelQuotes;
+        private readonly NaelQuotes naelQuotes;
         private Dictionary<string, string> naelQuotesDictionary;
 
         public NaelPlugin([RequiredVersion("1.0")] DalamudPluginInterface dalamudPluginInterface, [RequiredVersion("1.0")] ChatGui chatGui, [RequiredVersion("1.0")] CommandManager commandManager)
@@ -57,7 +57,12 @@
             
             this.chatGui.ChatMessage += OnChatMessage;
             
-            LoadQuotes();
+            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("nael.NaelQuotes.json");
+            using var streamReader = new StreamReader(stream);
+            var json = streamReader.ReadToEnd();
+            naelQuotes = JsonSerializer.Deserialize<NaelQuotes>(json);
+            
+            LoadQuotesDictionary();
         }
 
         private void NaelCommand(string command, string args)
@@ -150,12 +155,8 @@
         /// <summary>
         /// loads all quotes from the embedded .json into a dictionary
         /// </summary>
-        private void LoadQuotes()
+        private void LoadQuotesDictionary()
         {
-            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("nael.NaelQuotes.json");
-            using var streamReader = new StreamReader(stream);
-            var json = streamReader.ReadToEnd();
-            naelQuotes = JsonSerializer.Deserialize<NaelQuotes>(json);
             naelQuotesDictionary = new Dictionary<string, string>
             {
                 {GetQuote(6492), $"{configDynamo} {configSeparator} {configChariot}"}, //Phase 2 - Nael
@@ -199,7 +200,7 @@
             if (ImGui.Button("Save and Close"))
             {
                 SaveConfiguration();
-                LoadQuotes();
+                LoadQuotesDictionary();
                 drawConfiguration = false;
             }
             
