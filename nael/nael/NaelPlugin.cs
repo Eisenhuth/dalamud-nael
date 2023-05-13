@@ -199,7 +199,7 @@
             if (ImGui.Button("Save and Close"))
             {
                 SaveConfiguration();
-
+                LoadQuotes();
                 drawConfiguration = false;
             }
             
