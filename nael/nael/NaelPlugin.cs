@@ -1,5 +1,6 @@
 ﻿namespace nael
 {
+    using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
     using System.Text.Json;
@@ -33,7 +34,8 @@
         private string configMeteorStream;
         private string configSeparator;
 
-        private NaelQuotes _naelQuotes;
+        private NaelQuotes naelQuotes;
+        private Dictionary<string, string> naelQuotesDictionary;
 
         public NaelPlugin([RequiredVersion("1.0")] DalamudPluginInterface dalamudPluginInterface, [RequiredVersion("1.0")] ChatGui chatGui, [RequiredVersion("1.0")] CommandManager commandManager)
         {
@@ -55,11 +57,7 @@
             
             this.chatGui.ChatMessage += OnChatMessage;
             
-            //load the quotes
-            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("nael.NaelQuotes.json");
-            using var streamReader = new StreamReader(stream);
-            var json = streamReader.ReadToEnd();
-            _naelQuotes = JsonSerializer.Deserialize<NaelQuotes>(json);
+            LoadQuotes();
         }
 
         private void NaelCommand(string command, string args)
@@ -86,7 +84,7 @@
 
         private void TestPlugin()
         {
-            foreach (var quote in _naelQuotes.Quotes) 
+            foreach (var quote in naelQuotes.Quotes) 
                 chatGui.PrintChat(NaelMessage($"{GetQuote(quote.ID)}"));
         }
 
@@ -111,7 +109,7 @@
                 return;
 
             foreach (var payload in message.Payloads)
-                if (payload is TextPayload { Text: { } } textPayload)
+                if (payload is TextPayload { Text: not null } textPayload)
                 {
                     textPayload.Text = NaelIt(textPayload.Text);
                 }
@@ -124,39 +122,7 @@
         /// <returns>the names of the mechanics or the chat message if no quotes are found</returns>
         private string NaelIt(string input)
         {
-            //Phase 2
-            if (input == GetQuote(6492))
-                return $"{configDynamo} {configSeparator} {configChariot}";
-            if (input == GetQuote(6493))
-                return $"{configDynamo} {configSeparator} {configBeam}";
-            if (input == GetQuote(6494))
-                return $"{configBeam} {configSeparator} {configChariot}";
-            if (input == GetQuote(6495))
-                return $"{configBeam} {configSeparator} {configDynamo}";
-            if (input == GetQuote(6496))
-                return $"{configDive} {configSeparator} {configChariot}";
-            if (input == GetQuote(6497))
-                return $"{configDive} {configSeparator} {configDynamo}";
-            if (input == GetQuote(6500))
-                return $"{configMeteorStream} {configSeparator} {configDive}";
-            if (input == GetQuote(6501))
-                return $"{configDive} {configSeparator} {configBeam}";
-            //Phase 3
-            if (input == GetQuote(6502))
-                return $"{configDive} {configSeparator} {configDynamo} {configSeparator} {configMeteorStream}";
-            if (input == GetQuote(6503))
-                return $"{configDynamo} {configSeparator} {configDive} {configSeparator} {configMeteorStream}";
-            //Phase 4
-            if (input == GetQuote(6504))
-                return $"{configChariot} {configSeparator} {configBeam} {configSeparator} {configDive}";
-            if (input == GetQuote(6505))
-                return $"{configChariot} {configSeparator} {configDive} {configSeparator} {configBeam}";
-            if (input == GetQuote(6506))
-                return $"{configDynamo} {configSeparator} {configDive} {configSeparator} {configBeam}";
-            if (input == GetQuote(6507))
-                return $"{configDynamo} {configSeparator} {configChariot} {configSeparator} {configDive}";
-            
-            return input;
+            return naelQuotesDictionary.TryGetValue(input, out var mechanic) ? mechanic : input;
         }
 
         /// <summary>
@@ -167,7 +133,7 @@
         /// <returns>the quote based on the ID and the client language</returns>
         private string GetQuote(int id)
         {
-            var quote = _naelQuotes.Quotes.Find(q => q.ID == id);
+            var quote = naelQuotes.Quotes.Find(q => q.ID == id);
             var quoteText =  ClientState.ClientLanguage switch
             {
                 ClientLanguage.English => quote.Text.Text_en,
@@ -179,6 +145,34 @@
             quoteText = quoteText.Replace("\n\n", "\n");
             
             return quoteText;
+        }
+
+        /// <summary>
+        /// loads all quotes from the embedded .json into a dictionary
+        /// </summary>
+        private void LoadQuotes()
+        {
+            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("nael.NaelQuotes.json");
+            using var streamReader = new StreamReader(stream);
+            var json = streamReader.ReadToEnd();
+            naelQuotes = JsonSerializer.Deserialize<NaelQuotes>(json);
+            naelQuotesDictionary = new Dictionary<string, string>
+            {
+                {GetQuote(6492), $"{configDynamo} {configSeparator} {configChariot}"}, //Phase 2 - Nael
+                {GetQuote(6493), $"{configDynamo} {configSeparator} {configBeam}"},
+                {GetQuote(6494), $"{configBeam} {configSeparator} {configChariot}"},
+                {GetQuote(6495), $"{configBeam} {configSeparator} {configDynamo}"},
+                {GetQuote(6496), $"{configDive} {configSeparator} {configChariot}"},
+                {GetQuote(6497), $"{configDive} {configSeparator} {configDynamo}"},
+                {GetQuote(6500), $"{configMeteorStream} {configSeparator} {configDive}"},
+                {GetQuote(6501), $"{configDive} {configSeparator} {configBeam}"},
+                {GetQuote(6502), $"{configDive} {configSeparator} {configDynamo} {configSeparator} {configMeteorStream}"}, //Phase 3 - Bahamut Prime
+                {GetQuote(6503), $"{configDynamo} {configSeparator} {configDive} {configSeparator} {configMeteorStream}"},
+                {GetQuote(6504), $"{configChariot} {configSeparator} {configBeam} {configSeparator} {configDive}"}, //Phase 4 - Adds
+                {GetQuote(6505), $"{configChariot} {configSeparator} {configDive} {configSeparator} {configBeam}"},
+                {GetQuote(6506), $"{configDynamo} {configSeparator} {configDive} {configSeparator} {configBeam}"},
+                {GetQuote(6507), $"{configDynamo} {configSeparator} {configChariot} {configSeparator} {configDive}"}
+            };
         }
 
         private void DrawConfiguration()
