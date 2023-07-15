@@ -132,7 +132,7 @@
 
         /// <summary>
         /// uses the API quote ID to get the quote matching the client's language from the embedded NaelQuotes.json
-        /// quotes taken from https://xivapi.com/NpcYell/[id]
+        /// quotes taken from https://xivapi.com/NpcYell/[id] and https://cafemaker.wakingsands.com/NpcYell/[id]
         /// </summary>
         /// <param name="id">the quote ID</param>
         /// <returns>the quote based on the ID and the client language</returns>
@@ -145,7 +145,7 @@
                 ClientLanguage.French => quote.Text.Text_fr,
                 ClientLanguage.German => quote.Text.Text_de,
                 ClientLanguage.Japanese => quote.Text.Text_ja,
-                _ => quote.Text.Text_en
+                _ => quote.Text.Text_chs
             };
             quoteText = quoteText.Replace("\n\n", "\n");
             

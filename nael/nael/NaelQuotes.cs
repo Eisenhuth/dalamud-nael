@@ -19,4 +19,5 @@ public struct Text
     public string Text_en { get; set; }
     public string Text_fr { get; set; }
     public string Text_ja { get; set; }
+    public string Text_chs { get; set; }
 }
