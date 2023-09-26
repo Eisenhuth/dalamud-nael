@@ -13,6 +13,7 @@
     using Dalamud.Game.Text.SeStringHandling.Payloads;
     using Dalamud.IoC;
     using Dalamud.Plugin;
+    using Dalamud.Plugin.Services;
     using ImGuiNET;
 
     public class NaelPlugin : IDalamudPlugin
@@ -22,10 +23,10 @@
         private static bool drawConfiguration;
         
         private Configuration configuration;
-        private ChatGui chatGui;
+        private IChatGui chatGui;
         [PluginService] private static DalamudPluginInterface PluginInterface { get; set; } = null!;
-        [PluginService] private static CommandManager CommandManager { get; set; } = null!;
-        [PluginService] private static ClientState ClientState { get; set; } = null!;
+        [PluginService] private static ICommandManager CommandManager { get; set; } = null!;
+        [PluginService] private static IClientState ClientState { get; set; } = null!;
 
         private string configDynamo;
         private string configChariot;
@@ -37,7 +38,7 @@
         private readonly NaelQuotes naelQuotes;
         private Dictionary<string, string> naelQuotesDictionary;
 
-        public NaelPlugin([RequiredVersion("1.0")] DalamudPluginInterface dalamudPluginInterface, [RequiredVersion("1.0")] ChatGui chatGui, [RequiredVersion("1.0")] CommandManager commandManager)
+        public NaelPlugin([RequiredVersion("1.0")] DalamudPluginInterface dalamudPluginInterface, [RequiredVersion("1.0")] IChatGui chatGui, [RequiredVersion("1.0")] ICommandManager commandManager)
         {
             this.chatGui = chatGui;
 
@@ -90,7 +91,7 @@
         private void TestPlugin()
         {
             foreach (var quote in naelQuotes.Quotes) 
-                chatGui.PrintChat(NaelMessage($"{GetQuote(quote.ID)}"));
+                chatGui.Print(NaelMessage($"{GetQuote(quote.ID)}"));
         }
 
         private static XivChatEntry NaelMessage(string message)
