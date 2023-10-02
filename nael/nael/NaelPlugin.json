@@ -3,7 +3,7 @@
   "Name": "Nael'd it for UCOB",
   "Description": "Translates Nael's quotes into mechanics.",
   "Punchline": "because reading chat is not a mechanic",
-  "Changelog": "- added support for chinese (if client language isn't EN/DE/FR/JP)\n- this completes all languages that I currently have access to through APIs",
+  "Changelog": "-updated for Dalamud API9",
   "InternalName": "NaelPlugin",
   "Tags": ["ui"],
   "RepoUrl": "https://github.com/Eisenhuth/dalamud-nael",
