@@ -1,13 +1,13 @@
-﻿{
+{
   "Quotes": [
     {
       "ID": 6492,
       "Text": {
-        "Text_de": "O roter Mond! F\u00fchre mich zur Herrschaft! ",
+        "Text_de": "O roter Mond! Führe mich zur Herrschaft! ",
         "Text_en": "O hallowed moon,\n\nshine you the iron path!",
-        "Text_fr": "\u00d4 lune! \u00c9claire la voie de la domination!",
-        "Text_ja": "\u6708\u3088\uff01\n\n\u9244\u306e\u8987\u9053\u3092\u7167\u3089\u305b\uff01",
-        "Text_chs": "\u6708\u5149\u554a\uff01\n\u7167\u4eae\u94c1\u8840\u9738\u9053\uff01"
+        "Text_fr": "Ô lune! Éclaire la voie de la domination!",
+        "Text_ja": "月よ！\n\n鉄の覇道を照らせ！",
+        "Text_chs": "月光啊！\n照亮铁血霸道！"
       }
     },
     {
@@ -15,19 +15,19 @@
       "Text": {
         "Text_de": "O roter Mond! Umlodere meinen Pfad!",
         "Text_en": "O hallowed moon,\n\ntake fire and scorch my foes!",
-        "Text_fr": "Que l'incandescence de la lune br\u00fble mes ennemis!",
-        "Text_ja": "\u6708\u3088\uff01\n\n\u8d64\u71b1\u3057\u3001\u795e\u6575\u3092\u713c\u3051\uff01",
-        "Text_chs": "\u6708\u5149\u554a\uff01\n\u7528\u4f60\u7684\u70bd\u70ed\u70e7\u5c3d\u654c\u4eba\uff01"
+        "Text_fr": "Que l'incandescence de la lune brûle mes ennemis!",
+        "Text_ja": "月よ！\n\n赤熱し、神敵を焼け！",
+        "Text_chs": "月光啊！\n用你的炽热烧尽敌人！"
       }
     },
     {
       "ID": 6494,
       "Text": {
-        "Text_de": "Umloderter Pfad, f\u00fchre mich zur Herrschaft!",
+        "Text_de": "Umloderter Pfad, führe mich zur Herrschaft!",
         "Text_en": "Blazing path,\n\nlead me to iron rule!",
-        "Text_fr": "La voie marqu\u00e9e par l'incandescence m\u00e8ne \u00e0 la domination!",
-        "Text_ja": "\u8d64\u71b1\u3057\u3001\u713c\u304b\u308c\u3057\u9053\u3092\n\n\u9244\u306e\u8987\u9053\u3068\u6210\u3059\uff01",
-        "Text_chs": "\u88ab\u70bd\u70ed\u707c\u70e7\u8fc7\u7684\u8f68\u8ff9\n\u4e43\u6210\u94c1\u8840\u9738\u9053\uff01"
+        "Text_fr": "La voie marquée par l'incandescence mène à la domination!",
+        "Text_ja": "赤熱し、焼かれし道を\n\n鉄の覇道と成す！",
+        "Text_chs": "被炽热灼烧过的轨迹\n乃成铁血霸道！"
       }
     },
     {
@@ -35,9 +35,9 @@
       "Text": {
         "Text_de": "Flammender Pfad, geschaffen vom roten Mond!",
         "Text_en": "Take fire,\n\nO hallowed moon!",
-        "Text_fr": "Baignez dans la b\u00e9n\u00e9diction de la lune incandescente!",
-        "Text_ja": "\u8d64\u71b1\u305b\u3057\n\n\u6708\u306e\u795d\u798f\u3092\uff01",
-        "Text_chs": "\u70bd\u70ed\u71c3\u70e7\uff01\n\u7ed9\u4e88\u6211\u6708\u4eae\u7684\u795d\u798f\uff01"
+        "Text_fr": "Baignez dans la bénédiction de la lune incandescente!",
+        "Text_ja": "赤熱せし\n\n月の祝福を！",
+        "Text_chs": "炽热燃烧！\n给予我月亮的祝福！"
       }
     },
     {
@@ -45,9 +45,9 @@
       "Text": {
         "Text_de": "Seht, ich steige herab, um euch zu beherrschen!",
         "Text_en": "From on high I descend,\n\nthe iron path to walk!",
-        "Text_fr": "Du haut des cieux, je vais descendre pour conqu\u00e9rir!",
-        "Text_ja": "\u6211\u3001\u821e\u3044\u964d\u308a\u3066\n\n\u9244\u306e\u8987\u9053\u3092\u5f81\u304f\uff01",
-        "Text_chs": "\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\n\u5f81\u6218\u94c1\u8840\u9738\u9053\uff01"
+        "Text_fr": "Du haut des cieux, je vais descendre pour conquérir!",
+        "Text_ja": "我、舞い降りて\n\n鉄の覇道を征く！",
+        "Text_chs": "我降临于此，\n征战铁血霸道！"
       }
     },
     {
@@ -55,29 +55,29 @@
       "Text": {
         "Text_de": "Seht, ich steige herab, vom rotgl\u00fchenden Monde!",
         "Text_en": "From on high I descend,\n\nthe hallowed moon to call!",
-        "Text_fr": "Des cieux je vais descendre et r\u00e9v\u00e9rer la lune!",
-        "Text_ja": "\u6211\u3001\u821e\u3044\u964d\u308a\u3066\n\n\u6708\u3092\u4ef0\u304c\u3093\uff01",
-        "Text_chs": "\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\n\u5bf9\u6708\u957f\u5578\uff01"
+        "Text_fr": "Des cieux je vais descendre et révérer la lune!",
+        "Text_ja": "我、舞い降りて\n\n月を仰がん！",
+        "Text_chs": "我降临于此，\n对月长啸！"
       }
     },
     {
       "ID": 6500,
       "Text": {
-        "Text_de": "Neues Gestirn! \u00dcberstrahle jede Sternschnuppe!",
+        "Text_de": "Neues Gestirn! Überstrahle jede Sternschnuppe!",
         "Text_en": "Fleeting light!\n\nAmid a rain of stars,\n\nexalt you the red moon!",
         "Text_fr": "Supernova, brille de tout ton feu et glorifie la lune rouge!",
-        "Text_ja": "\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\n\n\u661f\u964d\u308a\u306e\u591c\u306b\u3001\u7d05\u6708\u3092\u79f0\u3048\u3088\uff01",
-        "Text_chs": "\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\n\u5728\u661f\u964d\u4e4b\u591c\uff0c\u79f0\u8d5e\u7ea2\u6708\uff01"
+        "Text_ja": "超新星よ、輝きを増せ！\n\n星降りの夜に、紅月を称えよ！",
+        "Text_chs": "超新星啊，更加闪耀吧！\n在星降之夜，称赞红月！"
       }
     },
     {
       "ID": 6501,
       "Text": {
-        "Text_de": "Neues Gestirn! Gl\u00fche herab und umlodere meinen Pfad!",
+        "Text_de": "Neues Gestirn! Glühe herab und umlodere meinen Pfad!",
         "Text_en": "Fleeting light!\n\n'Neath the red moon,\n\nscorch you the earth!",
         "Text_fr": "Supernova, brille de tout ton feu et irradie la terre rougie!",
-        "Text_ja": "\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\n\n\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01",
-        "Text_chs": "\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\n\u7167\u4eae\u7ea2\u6708\u4e0b\u70bd\u70ed\u4e4b\u5730\uff01"
+        "Text_ja": "超新星よ、輝きを増せ！\n\n紅月下の赤熱せし地を照らせ！",
+        "Text_chs": "超新星啊，更加闪耀吧！\n照亮红月下炽热之地！"
       }
     },
     {
@@ -85,9 +85,9 @@
       "Text": {
         "Text_de": "Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich!",
         "Text_en": "From on high I descend,\n\nthe moon and stars to bring!",
-        "Text_fr": "Du haut des cieux, j'appelle une pluie d'\u00e9toiles!",
-        "Text_ja": "\u6211\u3001\u821e\u3044\u964d\u308a\u3066\u6708\u3092\u4ef0\u304e\n\n\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01",
-        "Text_chs": "\u6211\u964d\u4e34\u4e8e\u6b64\u5bf9\u6708\u957f\u5578\uff01\n\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01"
+        "Text_fr": "Du haut des cieux, j'appelle une pluie d'étoiles!",
+        "Text_ja": "我、舞い降りて月を仰ぎ\n\n星降りの夜を招かん！",
+        "Text_chs": "我降临于此对月长啸！\n召唤星降之夜！"
       }
     },
     {
@@ -95,19 +95,19 @@
       "Text": {
         "Text_de": "O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich!",
         "Text_en": "From hallowed moon I descend,\n\na rain of stars to bring!",
-        "Text_fr": "Depuis la lune, j'invoque une pluie d'\u00e9toiles!",
-        "Text_ja": "\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\n\n\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01",
-        "Text_chs": "\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\n\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01"
+        "Text_fr": "Depuis la lune, j'invoque une pluie d'étoiles!",
+        "Text_ja": "我、月より舞い降りて\n\n星降りの夜を招かん！",
+        "Text_chs": "我自月而来降临于此，\n召唤星降之夜！"
       }
     },
     {
       "ID": 6504,
       "Text": {
-        "Text_de": "Zur Herrschaft f\u00fchrt mein umloderter Pfad! Auf diesen steige ich herab!",
+        "Text_de": "Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab!",
         "Text_en": "Unbending iron,\n\ntake fire and descend!",
-        "Text_fr": "\u00d4 noble acier! Rougis ardemment et deviens ma lame transper\u00e7ante!",
-        "Text_ja": "\u9244\u3088\u3001\u8d64\u71b1\u305b\u3088\uff01\n\n\u821e\u3044\u964d\u308a\u3057\u6211\u304c\u5203\u3068\u306a\u308c\uff01",
-        "Text_chs": "\u94a2\u94c1\u71c3\u70e7\u5427\uff01\n\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u5200\u5251\u5427\uff01"
+        "Text_fr": "Ô noble acier! Rougis ardemment et deviens ma lame transperçante!",
+        "Text_ja": "鉄よ、赤熱せよ！\n\n舞い降りし我が刃となれ！",
+        "Text_chs": "钢铁燃烧吧！\n成为我降临于此的刀剑吧！"
       }
     },
     {
@@ -116,8 +116,8 @@
         "Text_de": "Zur Herrschaft steige ich herab, auf umlodertem Pfad!",
         "Text_en": "Unbending iron,\n\ndescend with fiery edge!",
         "Text_fr": "Fier acier! Sois ma lame plongeante et deviens incandescent!",
-        "Text_ja": "\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\n\n\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01",
-        "Text_chs": "\u94a2\u94c1\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u71c3\u70e7\u4e4b\u5251\uff01"
+        "Text_ja": "鉄よ、舞い降りし\n\n我の刃となり赤熱せよ！",
+        "Text_chs": "钢铁成为我降临于此的燃烧之剑！"
       }
     },
     {
@@ -126,18 +126,18 @@
         "Text_de": "O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen!",
         "Text_en": "From hallowed moon I descend,\n\nupon burning earth to tread!",
         "Text_fr": "De la lune, je descends et marche sur la terre ardente!",
-        "Text_ja": "\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\n\n\u8d64\u71b1\u305b\u3057\u5730\u3092\u6b69\u307e\u3093\uff01",
-        "Text_chs": "\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\n\u8e0f\u8fc7\u70bd\u70ed\u4e4b\u5730\uff01"
+        "Text_ja": "我、月より舞い降りて\n\n赤熱せし地を歩まん！",
+        "Text_chs": "我自月而来降临于此，\n踏过炽热之地！"
       }
     },
     {
       "ID": 6507,
       "Text": {
-        "Text_de": "O roter Mond, als K\u00fcnder deiner Herrschaft stieg ich herab!",
+        "Text_de": "O roter Mond, als Künder deiner Herrschaft stieg ich herab!",
         "Text_en": "From hallowed moon I bare iron,\n\nin my descent to wield!",
         "Text_fr": "De la lune je m'arme d'acier et descends!",
-        "Text_ja": "\u6211\u3001\u6708\u3088\u308a\u9244\u3092\u5099\u3048\n\n\u821e\u3044\u964d\u308a\u3093\uff01",
-        "Text_chs": "\u6211\u81ea\u6708\u800c\u6765\u643a\u94a2\u94c1\u964d\u4e34\u4e8e\u6b64\uff01"
+        "Text_ja": "我、月より鉄を備え\n\n舞い降りん！",
+        "Text_chs": "我自月而来携钢铁降临于此！"
       }
     }
   ]
