@@ -5,15 +5,14 @@
     using System.Reflection;
     using System.Text.Json;
     using Dalamud;
-    using Dalamud.Game.ClientState;
     using Dalamud.Game.Text;
     using Dalamud.Game.Command;
-    using Dalamud.Game.Gui;
     using Dalamud.Game.Text.SeStringHandling;
     using Dalamud.Game.Text.SeStringHandling.Payloads;
     using Dalamud.IoC;
     using Dalamud.Plugin;
     using Dalamud.Plugin.Services;
+    using FuzzySharp;
     using ImGuiNET;
 
     public class NaelPlugin : IDalamudPlugin
@@ -128,7 +127,9 @@
         /// <returns>the names of the mechanics or the chat message if no quotes are found</returns>
         private string NaelIt(string input)
         {
-            return naelQuotesDictionary.TryGetValue(input, out var mechanic) ? mechanic : input;
+            var match = Process.ExtractOne(input, naelQuotesDictionary.Keys, (s) => s);
+            
+            return match is { Score: >= 85 } ? naelQuotesDictionary[match.Value] : input;
         }
 
         /// <summary>
