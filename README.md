@@ -13,3 +13,6 @@ Chat plugin alternative to ACT triggers, Cactbot or memorization.
 
 # installation
 get it here: https://github.com/Eisenhuth/TrustworthyDalamudPlugins
+```
+https://raw.githubusercontent.com/Eisenhuth/TrustworthyDalamudPlugins/master/pluginmaster.json
+```
