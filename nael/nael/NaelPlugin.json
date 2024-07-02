@@ -3,7 +3,7 @@
   "Name": "Nael'd it for UCOB",
   "Description": "Translates Nael's quotes into mechanics.",
   "Punchline": "because reading chat is not a mechanic",
-  "Changelog": "- see full changelog on github",
+  "Changelog": "- updated for Dalamud apiX",
   "InternalName": "NaelPlugin",
   "Tags": ["ui"],
   "RepoUrl": "https://github.com/Eisenhuth/dalamud-nael",

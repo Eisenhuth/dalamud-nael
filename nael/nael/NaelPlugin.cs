@@ -4,7 +4,7 @@
     using System.IO;
     using System.Reflection;
     using System.Text.Json;
-    using Dalamud;
+    using Dalamud.Game;
     using Dalamud.Game.Text;
     using Dalamud.Game.Command;
     using Dalamud.Game.Text.SeStringHandling;
@@ -23,7 +23,7 @@
         
         private Configuration configuration;
         private IChatGui chatGui;
-        [PluginService] private static DalamudPluginInterface PluginInterface { get; set; } = null!;
+        [PluginService] private static IDalamudPluginInterface PluginInterface { get; set; } = null!;
         [PluginService] private static ICommandManager CommandManager { get; set; } = null!;
         [PluginService] private static IClientState ClientState { get; set; } = null!;
 
@@ -37,7 +37,7 @@
         private readonly NaelQuotes naelQuotes;
         private Dictionary<string, string> naelQuotesDictionary;
 
-        public NaelPlugin([RequiredVersion("1.0")] DalamudPluginInterface dalamudPluginInterface, [RequiredVersion("1.0")] IChatGui chatGui, [RequiredVersion("1.0")] ICommandManager commandManager)
+        public NaelPlugin(IDalamudPluginInterface dalamudPluginInterface, IChatGui chatGui, ICommandManager commandManager)
         {
             this.chatGui = chatGui;
 
@@ -105,7 +105,7 @@
             return entry;
         }
 
-        private void OnChatMessage(XivChatType type, uint id, ref SeString sender, ref SeString message, ref bool handled)
+        private void OnChatMessage(XivChatType type, int timestamp, ref SeString sender, ref SeString message, ref bool handled)
         {
             if (!configuration.Enabled) 
                 return;

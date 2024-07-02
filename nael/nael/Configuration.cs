@@ -16,9 +16,9 @@ namespace nael
         public string Separator { get; set; } = ">";
         
 
-        private DalamudPluginInterface pluginInterface;
+        private IDalamudPluginInterface pluginInterface;
 
-        public void Initialize(DalamudPluginInterface pInterface)
+        public void Initialize(IDalamudPluginInterface pInterface)
         {
             pluginInterface = pInterface;
         }
