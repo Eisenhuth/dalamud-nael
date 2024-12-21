@@ -1,17 +1,20 @@
 ﻿namespace nael
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
     using System.Text.Json;
     using Dalamud.Game;
-    using Dalamud.Game.Text;
     using Dalamud.Game.Command;
+    using Dalamud.Game.Text;
     using Dalamud.Game.Text.SeStringHandling;
     using Dalamud.Game.Text.SeStringHandling.Payloads;
     using Dalamud.IoC;
     using Dalamud.Plugin;
     using Dalamud.Plugin.Services;
+    using FFXIVClientStructs.FFXIV.Client.UI;
     using FuzzySharp;
     using ImGuiNET;
 
@@ -33,6 +36,9 @@
         private string configDive;
         private string configMeteorStream;
         private string configSeparator;
+        
+        private bool gimmickText;
+        private int gimmickDuration;
 
         private readonly NaelQuotes naelQuotes;
         private Dictionary<string, string> naelQuotesDictionary;
@@ -48,10 +54,11 @@
             
             dalamudPluginInterface.UiBuilder.Draw += DrawConfiguration;
             dalamudPluginInterface.UiBuilder.OpenConfigUi += OpenConfig;
+            dalamudPluginInterface.UiBuilder.OpenMainUi += OpenConfig;
             
             commandManager.AddHandler(commandName, new CommandInfo(NaelCommand)
             {
-                HelpMessage = "toggle the plugin\n/nael test → print test quotes\n/nael cfg → open the configuration window",
+                HelpMessage = "toggle the translation\n/nael test → print test quotes\n/nael random → print random quote\n/nael cfg → open the configuration window",
                 ShowInHelp = true
             });
             
@@ -73,24 +80,46 @@
                     OpenConfig();
                     break;
                 case "test":
-                    TestPlugin();
+                    PrintAllQuotes();
+                    break;
+                case "random":
+                    PrintRandomQuote();
                     break;
                 default:
                 {
                     configuration.Enabled = !configuration.Enabled;
                     configuration.Save();
 
-                    var pluginStatus = configuration.Enabled ? "enabled" : "disabled";
+                    var pluginStatus = configuration.Enabled ? "translation enabled" : "translation disabled";
                     chatGui.Print($"{Name} {pluginStatus}");
                     break;
                 }
             }
         }
 
-        private void TestPlugin()
+        private void PrintAllQuotes()
         {
             foreach (var quote in naelQuotes.Quotes) 
                 chatGui.Print(NaelMessage($"{GetQuote(quote.ID)}"));
+        }
+
+        private void PrintRandomQuote()
+        {
+            var number = new Random().Next(0, naelQuotes.Quotes.Count);
+            var quote = naelQuotes.Quotes[number].ID;
+            chatGui.Print(NaelMessage($"{GetQuote(quote)}"));
+        }
+        
+        private static bool CheckForNael(string name)
+        {
+            var names = new string[]
+            {
+                "Nael deus Darnus", //EN/DE/FR
+                "ネール・デウス・ダーナス", //JA
+                "奈尔·神·达纳斯", //CN
+            };
+
+            return names.Contains(name);
         }
 
         private static XivChatEntry NaelMessage(string message)
@@ -107,17 +136,23 @@
 
         private void OnChatMessage(XivChatType type, int timestamp, ref SeString sender, ref SeString message, ref bool handled)
         {
-            if (!configuration.Enabled) 
-                return;
-
             if (type != XivChatType.NPCDialogueAnnouncements)
                 return;
 
             foreach (var payload in message.Payloads)
                 if (payload is TextPayload { Text: not null } textPayload)
-                {
-                    textPayload.Text = NaelIt(textPayload.Text);
+                { 
+                    if (configuration.Enabled) 
+                        textPayload.Text = NaelIt(textPayload.Text);
+                    
+                    if (gimmickText && CheckForNael(sender.TextValue))
+                        ShowTextGimmick(textPayload.Text, gimmickDuration);
                 }
+        }
+        
+        private static unsafe void ShowTextGimmick(string message, int durationInSeconds)
+        {
+            RaptureAtkModule.Instance()->ShowTextGimmickHint(message, RaptureAtkModule.TextGimmickHintStyle.Warning, durationInSeconds * 10);
         }
         
         /// <summary>
@@ -197,7 +232,23 @@
             ImGui.Text($"Nael deus Darnus: {configBeam} {configSeparator} {configChariot}");
             ImGui.Text($"Nael deus Darnus: {configDynamo} {configSeparator} {configDive} {configSeparator} {configMeteorStream}");
             
-            ImGui.Separator();        
+            ImGui.Separator();
+
+            ImGui.Checkbox("Show Dawntrail Mechanic Text", ref gimmickText);
+            ImGui.SliderInt("Display Duration", ref gimmickDuration, 1, 10);
+            
+            ImGui.Separator();       
+            
+            if (ImGui.Button("Test random quote"))
+                PrintRandomQuote();
+            
+            ImGui.SameLine();
+
+            if (ImGui.Button("Test all quotes"))
+                PrintAllQuotes();
+            
+            
+            ImGui.Separator();
             
             if (ImGui.Button("Save and Close"))
             {
@@ -206,12 +257,6 @@
                 drawConfiguration = false;
             }
             
-            ImGui.SameLine();
-            
-            if (ImGui.Button("Test all quotes"))
-            {
-                TestPlugin();
-            }
             
             ImGui.End();
         }
@@ -229,6 +274,8 @@
             configDive = configuration.Dive;
             configMeteorStream = configuration.MeteorStream;
             configSeparator = configuration.Separator;
+            gimmickText = configuration.GimmickText;
+            gimmickDuration = configuration.GimmickDuration;
         }
 
         private void SaveConfiguration()
@@ -239,6 +286,8 @@
             configuration.Dive = configDive;
             configuration.MeteorStream = configMeteorStream;
             configuration.Separator = configSeparator;
+            configuration.GimmickText = gimmickText;
+            configuration.GimmickDuration = gimmickDuration;
             
             PluginInterface.SavePluginConfig(configuration);
         }

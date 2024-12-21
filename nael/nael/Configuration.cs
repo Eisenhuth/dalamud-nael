@@ -14,6 +14,8 @@ namespace nael
         public string Dive { get; set; } = "DIVE";
         public string MeteorStream { get; set; } = "SPREAD";
         public string Separator { get; set; } = ">";
+        public bool GimmickText { get; set; }
+        public int GimmickDuration { get; set; } = 5;
         
 
         private IDalamudPluginInterface pluginInterface;
