@@ -3,7 +3,7 @@
   "Name": "Nael'd it for UCOB",
   "Description": "Translates Nael's quotes into mechanics.",
   "Punchline": "because reading chat is not a mechanic",
-  "Changelog": "- added optional Dawntrail Text popup",
+  "Changelog": "- updated for Dalamud api12",
   "InternalName": "NaelPlugin",
   "Tags": ["ui"],
   "RepoUrl": "https://github.com/Eisenhuth/dalamud-nael",
