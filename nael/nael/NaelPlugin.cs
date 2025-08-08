@@ -16,7 +16,7 @@
     using Dalamud.Plugin.Services;
     using FFXIVClientStructs.FFXIV.Client.UI;
     using FuzzySharp;
-    using ImGuiNET;
+    using Dalamud.Bindings.ImGui;
 
     public class NaelPlugin : IDalamudPlugin
     {
