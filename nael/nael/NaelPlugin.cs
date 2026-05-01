@@ -1,4 +1,6 @@
-﻿namespace nael
+﻿using Dalamud.Game.Chat;
+
+namespace nael
 {
     using System;
     using System.Collections.Generic;
@@ -134,18 +136,18 @@
             return entry;
         }
 
-        private void OnChatMessage(XivChatType type, int timestamp, ref SeString sender, ref SeString message, ref bool handled)
+        private void OnChatMessage(IHandleableChatMessage message)
         {
-            if (type != XivChatType.NPCDialogueAnnouncements)
+            if (message.LogKind != XivChatType.NPCDialogueAnnouncements)
                 return;
 
-            foreach (var payload in message.Payloads)
+            foreach (var payload in message.Message.Payloads)
                 if (payload is TextPayload { Text: not null } textPayload)
                 { 
                     if (configuration.Enabled) 
                         textPayload.Text = NaelIt(textPayload.Text);
                     
-                    if (gimmickText && CheckForNael(sender.TextValue))
+                    if (gimmickText && CheckForNael(message.Sender.TextValue))
                         ShowTextGimmick(textPayload.Text, gimmickDuration);
                 }
         }

@@ -1,4 +1,4 @@
-<Project Sdk="Dalamud.NET.Sdk/14.0.1">
+<Project Sdk="Dalamud.NET.Sdk/15.0.0">
     <PropertyGroup>
         <AssemblyName>NaelPlugin</AssemblyName>
         <TargetFramework>net10.0-windows</TargetFramework>
@@ -9,8 +9,8 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <OutputPath>$(AppData)\Eisenhuth\DalamudDevPlugins\NaelPlugin\</OutputPath>
         <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
-        <AssemblyVersion>1.5.0.3</AssemblyVersion>
-        <Version>1.5.0.3</Version>
+        <AssemblyVersion>1.5.0.4</AssemblyVersion>
+        <Version>1.5.0.4</Version>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
         <PackageProjectUrl>https://github.com/Eisenhuth/dalamud-nael</PackageProjectUrl>
@@ -20,7 +20,7 @@
 
     <ItemGroup>
         <PackageReference Include="FuzzySharp" Version="2.0.2" />
-        <PackageReference Update="DalamudPackager" Version="14.0.1" />
+        <PackageReference Update="DalamudPackager" Version="15.0.0" />
     </ItemGroup>
 
     <ItemGroup>
